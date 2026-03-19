@@ -29,27 +29,53 @@ function createToDoList(name, desc, note, date, importance, status) {
 }
 
 const getDate = () => {
-    return new Date().toLocaleDateString;
+    return new Date().toLocaleDateString();
 }
 
 
-const createNewProject = (name) => {
+const createProject = (name) => {
     
-    let projectName = name;
-    let projectId = uuidv4(); 
-    let createdDate = getDate();
-    let toDos = [];
+    
 
-    const createNewTodoList = (name, desc, note, date, importance, status) => {
-        const newTodo = createToDoList(name, desc, note, date, importance, status);
-        toDos.push(newTodo);
-    }
+   
+        const projectName = name;
+        const projectId = uuidv4(); 
+        const createdDate = getDate();
+        let toDos = [];
+
+    
+
+
+
+    const getToDos = () => [...toDos];
+
+    const addToDo = (Todo) => toDos.push(Todo);
 
     const deleteTodoList = (id) => {
         toDos = toDos.filter(item => item.id !== id)
     }
 
-    const markComplete = (id) => {
+    const markTodoComplete = (id) => {
+
+    }
+
+    const updateTodoPriority = (id) => {
+
+    }
+
+    const editTodoTitle = (id) => {
+
+    }
+
+    const editTodoDescription = (id) => {
+
+    }
+
+    const editTodoNotes = (id) => {
+
+    }
+
+    const changeTododueDate = (id) => {
 
     }
 
@@ -58,10 +84,30 @@ const createNewProject = (name) => {
     return {
         projectName,
         projectId,
-        createNewTodoList,
-        deleteTodoList
+        createdDate,
+        addToDo,
+        deleteTodoList,
+        getToDos,
+        markTodoComplete,
+        updateTodoPriority,
+        editTodoTitle,
+        editTodoDescription,
+        editTodoNotes,
+        changeTododueDate
     }
 
 
 }
 
+
+
+function assignTodotoProject(projectId){
+    const toDo = createToDoList(title, description, notes, dueDate, priority,isCompleted,)
+    handleProject.addToDo(toDo);
+
+}
+
+
+const handleAppstate() => {
+
+}
