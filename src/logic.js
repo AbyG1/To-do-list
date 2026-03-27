@@ -114,11 +114,17 @@ const createProject = (name) => {
 const handleAppstate = () =>  {
     
     const appState = [];
-
-    const addProject = (projectName) => {
+    
+                        
+    const createNewProject = (projectName) => {
         const newProject = createProject(projectName);
         appState.push(newProject);
 
+    };
+
+    const createNewTodo = (name, desc, note, date, importance, status) => {
+        const newTodo = createNewTodo(name, desc, note, date, importance, status);
+        return newTodo.id;
     };
 
     const addTodoToProject = (projectId, todoId) => {
@@ -132,6 +138,8 @@ const handleAppstate = () =>  {
         console.log(appState);
 
     };
+
+    
 
 
 
