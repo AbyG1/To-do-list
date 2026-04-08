@@ -79,27 +79,59 @@ const handleApp = () =>  {
     const addTodoToProject = (projectId,todoID) => {
 
         
-    const project = projects.find(p => p.projectId === projectId);
+        const project = projects.find(p => p.projectId === projectId);
+
+        if(project){
+            const todoExist = todos.some(t => t.id === todoID);
+            if(todoExist){
+                const isDuplicate = project.todoIDs.includes(todoID);
+                if(!isDuplicate){
+                    project.todoIDs.push(todoID);
+                } else {
+                    console.log("Todo already exist in the project");
+                    return;
+                }
+            } else {
+                console.log("The given todo doesn't exist");
+                return;
+            }
+
+        } else {
+            console.log("project not found");
+            return;
+        }
     
     
-    const todoExist = todos.some(t => t.id === todoID);
-    const isDuplicate = project?.todoIDs.includes(todoID);
-
-       if (project && todoExist && !isDuplicate) {
-        project.todoIDs.push(todoID);
-    } else {
-        console.error('Todo not added: Project missing, todo missing, or already exists.');
-    }
 
     }
 
+
+    const getAllTodosInProject = (projectId) => {
+        const project = projects.find(p => p.projectId === projectId);
+        if(!project){
+            console.log("no project found");
+            return new error("project not found");
+        }
+        const toDos = todos.filter(todo => {
+            if(project.todoIDs.includes(todo.id)){
+                return todo
+            }
+        })
+
+        return toDos;
+    };
   
+    const deleteTodo = (todoId) => {
+        
+    };
     
     
     return {
         createNewProject,
         createNewTodo,
-        addTodoToProject
+        addTodoToProject,
+        getAllTodosInProject,
+        deleteTodo
     }
     
 
